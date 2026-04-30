@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+
+:root {
+  --bg:        #04050d;
+  --surface:   #080c18;
+  --surface2:  #0d1225;
+  --border:    #1a2a4a;
+  --cyan:      #00f5ff;
+  --cyan-dim:  #007a80;
+  --magenta:   #ff2d78;
+  --yellow:    #ffe033;
+  --green:     #00ff88;
+  --text:      #c8deff;
+  --muted:     #4a6a9a;
+  --font-main: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Scanlines overlay ──────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.18) 2px,
+    rgba(0,0,0,0.18) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Animated grid background ───────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridMove {
+  0%   { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 1.7;
+  padding: 2.5rem;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  cursor: crosshair;
+}
+
+/* ── Header ─────────────────────────────────── */
+header {
+  position: relative;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent);
+  animation: scanLine 3s ease-in-out infinite;
+}
+
+@keyframes scanLine {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+header h1 {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  text-shadow:
+    0 0 8px  var(--cyan),
+    0 0 24px rgba(0,245,255,0.4),
+    0 0 60px rgba(0,245,255,0.15);
+  animation: flicker 6s step-end infinite;
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96%           { opacity: 0.7; }
+  97%           { opacity: 1; }
+  98%           { opacity: 0.5; }
+  99%           { opacity: 1; }
+}
+
+/* ── Headings ────────────────────────────────── */
+h2 {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+h2::before {
+  content: '// ';
+  color: var(--magenta);
+}
+
+p {
+  color: #7a9acc;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+/* ── Links ───────────────────────────────────── */
+a {
+  color: var(--cyan);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 0; height: 1px;
+  background: var(--magenta);
+  transition: width 0.3s ease;
+}
+
+a:hover {
+  color: var(--magenta);
+  text-shadow: 0 0 8px var(--magenta);
+}
+
+a:hover::after { width: 100%; }
+
+/* ── Code ────────────────────────────────────── */
+code {
+  font-family: var(--font-mono);
+  background: rgba(0,245,255,0.06);
+  color: var(--yellow);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,245,255,0.2);
+  font-size: 0.88em;
+  text-shadow: 0 0 6px rgba(255,224,51,0.5);
+}
+
+/* ── Fieldset ────────────────────────────────── */
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.8rem;
+  background: var(--surface);
+  margin-top: 1.2rem;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+fieldset::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+fieldset:hover::before { opacity: 0.25; }
+
+fieldset:hover {
+  border-color: var(--cyan-dim);
+  box-shadow: 0 0 30px rgba(0,245,255,0.08), inset 0 0 30px rgba(0,245,255,0.02);
+}
+
+legend {
+  font-family: var(--font-mono);
+  color: var(--cyan);
+  padding: 0 0.75rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0,245,255,0.6);
+}
+
+legend::before { content: '[ '; color: var(--magenta); }
+legend::after  { content: ' ]'; color: var(--magenta); }
+
+/* ── Lists ───────────────────────────────────── */
+ol, ul { padding-left: 1.5rem; margin-bottom: 0.4rem; }
+
+li {
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+li::marker { color: var(--cyan-dim); }
+
+/* ── Inputs / Textarea / Select ─────────────── */
+input:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="submit"]):not([type="reset"]):not([type="button"]):not([type="image"]),
+textarea,
+select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--cyan);
+  padding: 5px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  margin-top: 4px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  caret-color: var(--cyan);
+}
+
+input:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="submit"]):not([type="reset"]):not([type="button"]):not([type="image"]):focus,
+textarea:focus,
+select:focus {
+  border-color: var(--cyan);
+  background: rgba(0,245,255,0.04);
+  box-shadow: 0 0 0 2px rgba(0,245,255,0.12), 0 0 16px rgba(0,245,255,0.08);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+textarea {
+  min-height: 64px;
+  resize: vertical;
+}
+
+select option   { background: var(--surface2); color: var(--cyan); }
+select optgroup { background: var(--surface);  color: var(--magenta); font-weight: 700; }
+
+/* ── Range ───────────────────────────────────── */
+input[type="range"] {
+  accent-color: var(--cyan);
+  margin-top: 4px;
+}
+
+/* ── Radio / Checkbox ────────────────────────── */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--cyan);
+  width: 14px; height: 14px;
+  cursor: pointer;
+}
+
+/* ── Submit / Reset / Button ─────────────────── */
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+  margin-top: 4px;
+}
+
+input[type="submit"] {
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  text-shadow: 0 0 8px var(--cyan);
+  box-shadow: 0 0 12px rgba(0,245,255,0.15), inset 0 0 12px rgba(0,245,255,0.05);
+}
+
+input[type="submit"]:hover {
+  background: var(--cyan);
+  color: var(--bg);
+  box-shadow: 0 0 24px rgba(0,245,255,0.5);
+  text-shadow: none;
+}
+
+input[type="reset"] {
+  background: transparent;
+  color: var(--magenta);
+  border: 1px solid var(--magenta);
+  text-shadow: 0 0 8px var(--magenta);
+  box-shadow: 0 0 12px rgba(255,45,120,0.15), inset 0 0 12px rgba(255,45,120,0.05);
+}
+
+input[type="reset"]:hover {
+  background: var(--magenta);
+  color: #fff;
+  box-shadow: 0 0 24px rgba(255,45,120,0.5);
+  text-shadow: none;
+}
+
+/* ── Label ───────────────────────────────────── */
+label {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+label:hover { color: var(--cyan); }
+
+/* ── Scrollbar ───────────────────────────────── */
+::-webkit-scrollbar              { width: 6px; }
+::-webkit-scrollbar-track        { background: var(--bg); }
+::-webkit-scrollbar-thumb        { background: var(--cyan-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--cyan); }
+
+/* ── Selection ───────────────────────────────── */
+::selection {
+  background: rgba(0,245,255,0.25);
+  color: #fff;
+}
