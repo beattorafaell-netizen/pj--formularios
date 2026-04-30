@@ -11,25 +11,10 @@
     </header>
     <main>
         <section>
-            <fieldset>
-                <legend>Aula - 1</legend>
+                <h2>Conteudo aula 1 - construindo componentes do formulario HTML</h2>
                 <p>Aqui vai ter todo o conteudo de importancia da aula 1 <br> As explicaçoes deles estão nos links</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div>
-                    <h2>Form e suas configurações</h2>
+                <fieldset>
+                    <legend>Form e suas configurações</legend>
                     <p>Ele serve para criar formularios em HTML, o usúario preenche as informações e manda elas para outro lugar.</p>
                     <li>Ele é escrito como uma tag <code>&lt;form action="/cadastro" method="post"&gt;</code></li>
                     <ol>
@@ -38,23 +23,141 @@
                             <li><a href="https://www.w3schools.com/tags/att_form_Action.asp">Documentação de explicação do que é action</a></li>
                             <li>Resumidamente, é o caminho para onde os dados vai depois do submit.</li>
                         </ul>
+                        
+                        <li>METHOD</li>
+                        <ul>
+                            <li><a href="https://www.w3schools.com/tags/att_form_method.asp">Documentação de explicação do que é method</a></li>
+                            <li>Resumidamente, é o tipo de requisição, de qual forma os dados serão enviados depois do submit.</li>
+                            <ol>
+                                <li>GET</li>
+                                <ul>
+                                    <li>Get é o metodo usado para enviar os dados pela URL, eel ficara visivel na URL, nao é bom colocar para quand for pesquisa grande, pois tem limites de caracteres, 3000. não pode se usar para  arquivos "secretos"</li>
+                                </ul>
+                                <li>POST</li>
+                                <ul>
+                                    <li>Post é o metodo usado para enviar os dados de forma oculta, não ficara visivel na URL. é o metodo mais seguro para enviar dados sensíveis.</li>
+                                </ul>
+                            </ol>
+                        </ul>
+                        <li>TIPOS DE CAMPOS</li>
+                        <ul>
+                            <li><a href="https://www.w3schools.com/tags/tag_input.asp">Documentação de explicação dos tipos de campos</a></li>
+                            <li>Resumidamente, são os diferentes tipos de entrada que podem ser usados em um formulário.</li>
+                            <ol type="1" >
+                                <li>BUTTON</li>
+                                <ul>
+                                    <li>Mais usado para JS, ativar alert e outras coisas, ele nao envia o formulario</li>
+                                </ul>
+                                <li>CHECKBOX</li>
+                                <ul>
+                                    <li>Usado para criar caixa de seleção de multiplas escolhas, deve ter o mesmo "name=", o que deve nudar e é "value="</li>
+                                </ul>
+                                <li>COLOR</li>
+                                <ul>
+                                    <li>usado para o usuario selecionar uma cor</li>
+                                </ul>
+                                <li>DATE</li>
+                                <ul>
+                                    <li>usado para o usuario selecionar uma data</li>
+                                </ul>
+                                <li>DATETIME-local</li>
+                                <ul>
+                                    <li>usado para o usuario selecionar uma data e hora</li>
+                                    <input type="datetime-local" name="" id="">
+                                </ul>
+                                <li>EMAIL</li>
+                                <ul>
+                                    <li>usado para o usuario inserir um endereço de email, ja com validação - precisa conter o @ para ser valido</li>
+                                    <input type="email" name="" id="">
+                                </ul>
+                                <li>FILE</li>
+                                <ul>
+                                    <li>usado para o usuario selecionar um arquivo do computador para enviar</li>
+                                    <input type="file" name="" id="">
+                                </ul>
+                                <li>HIDDEN</li>
+                                <ul>
+                                    <li>usado para enviar dados ocultos, não é visivel para o usuario, mas é enviado junto com o formulario</li>
+                                    <input type="hidden" name="" id="">
+                                </ul>
+                                <li>IMAGE</li>
+                                <ul>
+                                    <li>É um botão de envio (submit) que usa uma imagem em vez de texto. Funciona como um botão de submit, mas com uma imagem como aparência.</li>
+                                    <input type="image" src="logo.png" name="" id="">
+                                </ul>
+                                <li>MONTH</li>
+                                <ul>
+                                    <li>O usuário seleciona o mês e o ano</li>
+                                    <input type="month" name="" id="">
+                                </ul>
+                                <li>NUMBER</li>
+                                <ul>
+                                    <li>usado para o usuario inserir um numero</li>
+                                    <input type="number" name="" id="">
+                                </ul>
+                                <li>PASSWORD</li>
+                                <ul>
+                                    <li>O usuário coloca uma senha</li>
+                                    <input type="password" name="" id="">   
+                                </ul>
+                                <li>RADIO</li>
+                                <ul>
+                                    <li>Usado para criar opções de escolha única, deve ter o mesmo "name=", o que deve nudar e é "value="</li>
+                                    <label for="masculino">Masculino</label>
+                                    <input type="radio" name="sexo" value="M" id="masculino">
+                                    <label for="feminino">Feminino</label>
+                                    <input type="radio" name="sexo" value="F" id="feminino">
+                                </ul>
+                                <li>RANGE</li>
+                                <ul>
+                                    <li>O usuário seleciona um valor dentro de um intervalo, geralmente exibido como um controle deslizante (slider).</li>
+                                    <input type="range" name="" id="">
+                                </ul>
+                                <li>RESET</li>
+                                <ul>
+                                    <li>O reset serve para resetar os valores do formulario</li>
+                                    <label for="resetar">as</label>
+                                    <input type="reset" value="resetar">
+                                </ul>
+                                <li>SEARCH</li>
+                                <ul>
+                                    <li>O usuário insere um termo de pesquisa, geralmente exibido com um campo de texto e um botão de pesquisa. MUito usado em motores de busca</li>
+                                    <input type="search" name="" id="">
+                                </ul>
+                                <li>SUBMIT</li>
+                                <ul>
+                                    <li>O submit é o botão de envio do formulario, ele envia os dados para o servidor ou para a URL especificada no atributo "action" do formulário.</li>
+                                    <input type="submit" value="Enviar">
+                                </ul>
+                                <li>TEL</li>
+                                <ul>
+                                    <li>O usuário coloca um número de telefone</li>
+                                    <input type="tel" name="" id="">
+                                </ul>
+                                <li>TIME</li>
+                                <ul>
+                                    <li>O usuário seleciona um horário</li>
+                                    <input type="time" name="" id="">
+                                </ul>
+                                <li>URL</li>
+                                <ul>
+                                    <li>O usuário insere uma URL</li>
+                                    <input type="url" name="" id="">
+                                </ul>
+                                <li>WEEK</li>
+                                <ul>
+                                    <li>O usuário seleciona uma semana</li>
+                                    <input type="week" name="" id="">
+                                </ul>
+                                <li>TEXT</li>
+                                <ul>
+                                    <li>O usuário insere um texto</li>
+                                    <input type="text" name="" id="">
+                                </ul>
+                            </ol>
+                        </ul>
                     </ol>
-                    <li>METHOD</li>
-                    <ul>
-                        <li><a href="https://www.w3schools.com/tags/att_form_method.asp">Documentação de explicação do que é method</a></li>
-                        <li>Resumidamente, é o tipo de requisição, de qual forma os dados serão enviados depois do submit.</li>
-                        <ol>
-                            <li>GET</li>
-                            <ul>
-                                <li>Get é o metodo usado para enviar os dados pela URL, eel ficara visivel na URL, nao é bom colocar para quand for pesquisa grande, pois tem limites de caracteres, 3000. não pode se usar para  arquivos "secretos"</li>
-                            </ul>
-                            <li>POST</li>
-                            <ul>
-                                <li>Post é o metodo usado para enviar os dados de forma oculta, não ficara visivel na URL. é o metodo mais seguro para enviar dados sensíveis.</li>
-                            </ul>
-                        </ol>
-                    </ul>
-                </div>
+                </fieldset>
 
 
 
@@ -73,9 +176,7 @@
                     fieldset e Legend
                 </div>
 
-                <div>
-                    Tipos de input
-                </div>
+               
             </fieldset>
 
 
